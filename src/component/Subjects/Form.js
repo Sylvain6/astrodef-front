@@ -30,7 +30,7 @@ export default () => {
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
                 <Form.Label>Name</Form.Label>
-                <Form.Control name="name" value={values.name} onChange={handleChange} placeholder="Definition" />
+                <Form.Control name="name" value={values.name} onChange={handleChange} placeholder="Subject" />
               </Form.Group>
             </Form.Row>
 

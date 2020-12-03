@@ -27,5 +27,15 @@ const postDefinition = async (body) => {
   }
 }
 
-export { postDefinition, getDefinitionsFromSubject };
+const deleteDefinition = async (id) => {
+  try {
+    const response = await instance.delete(`/definitions/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export { postDefinition, getDefinitionsFromSubject, deleteDefinition };
 export default getDefinitions;
