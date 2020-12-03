@@ -1,6 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import "tailwindcss/tailwind.css"
 import Definitions from './component/Definitions/Definitions';
 import DefBySubject from './component/Definitions/DefinitionsBySubject';
 import Navbar from 'react-bootstrap/Navbar';
