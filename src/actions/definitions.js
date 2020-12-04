@@ -23,7 +23,7 @@ const postDefinition = async (body) => {
     const response = await instance.post('/definitions', body);
     return response;
   } catch (error) {
-    console.error(error);
+    return error;
   }
 }
 

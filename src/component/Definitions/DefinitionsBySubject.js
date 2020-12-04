@@ -10,6 +10,7 @@ export default () => {
     const { name } = useParams();
     const [definitions, setDefinitions] = useState(null);
     const [alert, setAlert] = useState('');
+    const [variant, setVariant] = useState('success');
     useEffect(() => {
         const fetchDefBySubject = async () => {
             const { data } = await getDefinitionsFromSubject(name);
@@ -20,31 +21,37 @@ export default () => {
     const deleteDef = async (id, name) => {
         console.log(id);
         const res = await deleteDefinition(id);
-        res.data ?
-            setAlert(`Definition ${name} deleted`) :
+        if (res.data) {
+            setAlert(`Definition ${name} deleted`);
+        } else {
+            setVariant('danger');
             setAlert(`Definition ${name} not deleted : ${res.message}`);
+        };
         setDefinitions(definitions.filter(item => item.name !== name));
     }
 
     return (
         <>
-            <h1>All your definitions of the subject : {name}</h1>
             <div  style={{padding: '10px', paddingRight: '170px', paddingLeft: '170px'}}>
+            <h1>{name}</h1>
                 {definitions ?
                     <>
                         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
                             {definitions.map((definition, key) => (
-                            <Card key={key} bg='info' style={{ width: '18rem', margin: '10px' }}>
-                                <Card.Header>{definition.name}</Card.Header>
+                                <Card key={key} style={{ width: '100rem', marginBottom: '25px', marginTop: '25px' }}>
+                                <Card.Header className="text-center" ><b>{definition.name}</b></Card.Header>
                                 <Card.Body>
-                                    <Card.Text>{definition.content}
-                                        </Card.Text>
-
+                                    <Card.Text>{definition.content}</Card.Text>
+                                        <Button
+                                            variant="danger"
+                                            onClick={() =>
+                                                deleteDef(definition._id, definition.name)}>
+                                            Delete "{definition.name}"
+                                        </Button>
                                 </Card.Body>
-                                <Button variant="primary" onClick={() => deleteDef(definition._id, definition.name)}>Delete</Button>
                             </Card>))}
                         </div>
-                            {alert && <Alert key="deleted" variant="success">
+                            {alert && <Alert key="deleted" variant={variant}>
                                 {alert}
                             </Alert>}
                     </>:

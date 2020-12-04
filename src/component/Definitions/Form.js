@@ -5,9 +5,13 @@ import { postDefinition } from '../../actions/definitions';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
 
 const FormDef = () => {
+  const [subjects, setSubjects] = useState(null);
+  const [alert, setAlert] = useState('');
+  const [variant, setVariant] = useState('success');
    const formik = useFormik({
      initialValues: {
         name: '',
@@ -16,7 +20,12 @@ const FormDef = () => {
      },
      onSubmit: async (values) => {
        const response = await postDefinition(values);
-       setNewDef(response.data);
+        if (response.data) {
+         setAlert(`Definition ${values.name} added`)
+       } else {
+         setVariant("danger");
+         setAlert(`Definition ${values.name} not added : ${response.message}`);
+       }
        resetForm({});
      },
    });
@@ -26,8 +35,6 @@ const FormDef = () => {
     handleSubmit,
     resetForm
   } = formik;
-  const [subjects, setSubjects] = useState(null);
-  const [newDef, setNewDef] = useState('');
   const fetchSubjects = async () => {
     const { data } = await getSubjects();
     setSubjects(data);
@@ -38,7 +45,7 @@ const FormDef = () => {
 
   return (
     <div>
-      {subjects &&
+      {subjects ?
         <div>
           <Form onSubmit={handleSubmit}>
             <Form.Row>
@@ -68,14 +75,12 @@ const FormDef = () => {
               Submit
             </Button>
           </Form>
-        </div>}
-      {newDef && <Card key="new" bg='info' style={{ width: '18rem', margin: '10px' }}>
-                                <Card.Header>{newDef.name}</Card.Header>
-                                <Card.Body>
-                                    <Card.Text>{newDef.content}
-                            </Card.Text>
-                                </Card.Body>
-                            </Card>}
+        </div> : <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>}
+      {alert && <Alert key="added" variant={variant}>
+        {alert}
+      </Alert>}
     </div >
   )
 };
