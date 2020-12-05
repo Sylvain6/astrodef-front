@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { postSubject } from '../../actions/subjects';
+import React from 'react';
 import { useFormik } from 'formik';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
