@@ -6,6 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Subjects from './component/Subjects/Subjects';
 import Home from './component/Home/Home';
+import UnloggedHome from './component/Home/UnloggedHome';
+import { useCookies } from 'react-cookie';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +15,11 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const [cookies, setCookie] = useCookies(['mln-astrodef']);
   return (
+      <>
+    {
+      cookies['mln-astrodef'] === process.env.REACT_APP_TOKEN ?
     <Router>
       <div>
         <Navbar bg="dark" variant="dark">
@@ -47,8 +53,9 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </Router >: <UnloggedHome />}
+    </>
   );
-}
+  }
 
-export default App;
+  export default App;
