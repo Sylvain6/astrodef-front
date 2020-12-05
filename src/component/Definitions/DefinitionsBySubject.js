@@ -12,10 +12,14 @@ export default () => {
     const [definitions, setDefinitions] = useState(null);
     const [alert, setAlert] = useState('');
     const [variant, setVariant] = useState('success');
+    const [currentDef, setCurrentDef] = useState(null);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = def => {
+        setShow(true);
+        setCurrentDef(def);
+    }
     useEffect(() => {
         const fetchDefBySubject = async () => {
             const { data } = await getDefinitionsFromSubject(name);
@@ -24,7 +28,6 @@ export default () => {
         fetchDefBySubject();
     }, []);
     const deleteDef = async (id, name) => {
-        console.log(id);
         const res = await deleteDefinition(id);
         if (res.data) {
             setAlert(`Definition ${name} deleted`);
@@ -51,12 +54,13 @@ export default () => {
                                     <Card.Text>{definition.content}</Card.Text>
                                         <Button
                                             variant="danger"
-                                            onClick={handleShow}>
+                                            onClick={() => handleShow(definition)}>
                                             Delete "{definition.name}"
                                         </Button>
                                 </Card.Body>
                                     </Card>
-                                    <Modal key={`modal${key}`} show={show} onHide={handleClose}>
+                </>))}
+                                    <Modal key={`modal`} show={show} onHide={handleClose}>
                                         <Modal.Header closeButton>
                                         <Modal.Title>Are you sure ?</Modal.Title>
                                         </Modal.Header>
@@ -66,12 +70,11 @@ export default () => {
                                             Cancel
                                         </Button>
                                         <Button variant="danger" onClick={() =>
-                                                deleteDef(definition._id, definition.name)}>
-                                                Delete {definition.name}
+                                                deleteDef(currentDef._id, currentDef.name)}>
+                                                Delete
                                         </Button>
                                         </Modal.Footer>
                                     </Modal>
-                </>))}
                         </div>
                             {alert && <Alert key="deleted" variant={variant}>
                                 {alert}
