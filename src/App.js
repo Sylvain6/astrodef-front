@@ -5,6 +5,7 @@ import DefBySubject from './component/Definitions/DefinitionsBySubject';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Subjects from './component/Subjects/Subjects';
+import Home from './component/Home/Home';
 import {
   BrowserRouter as Router,
   Switch,
@@ -42,7 +43,7 @@ function App() {
             <Subjects />
           </Route>
           <Route path="/">
-            <p>HelloWorld</p>
+            <Home/>
           </Route>
         </Switch>
       </div>

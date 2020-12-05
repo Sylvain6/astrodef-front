@@ -29,7 +29,7 @@ export default () => {
           <Form onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
-                <Form.Label>Name</Form.Label>
+                <Form.Label style={{color: 'white'}}>Name</Form.Label>
                 <Form.Control name="name" value={values.name} onChange={handleChange} placeholder="Subject" />
               </Form.Group>
             </Form.Row>
@@ -38,7 +38,7 @@ export default () => {
               Submit
             </Button>
         </Form>
-        {newSubject && <Button key="new" variant="primary" size="lg" style={{ margin: '15px' }}>
+        {newSubject && <Button key="new" variant="dark" size="lg" style={{ margin: '15px' }}>
           {newSubject}
         </Button>}
   </div>

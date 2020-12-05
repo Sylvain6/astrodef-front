@@ -50,12 +50,12 @@ const FormDef = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
-                <Form.Label>Name</Form.Label>
+                <Form.Label style={{color: 'white'}}>Name</Form.Label>
                 <Form.Control name="name" value={values.name} onChange={handleChange} placeholder="Definition" />
               </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSubject">
-              <Form.Label>Subject</Form.Label>
+              <Form.Label style={{color: 'white'}}>Subject</Form.Label>
               <Form.Control name="subject" as="select" defaultValue="" value={values.subject} onChange={handleChange}>
                 <option key="lol" value="">Choose a subject</option>
                 {subjects.map((subject, key) => <option key={key} value={subject.name}> {subject.name} </option>)}
@@ -63,7 +63,7 @@ const FormDef = () => {
             </Form.Group>
             </Form.Row>
             <Form.Group controlId="formGridCOntent">
-              <Form.Label>Content</Form.Label>
+              <Form.Label style={{color: 'white'}}>Content</Form.Label>
               <Form.Control as="textarea" rows={3}
                   name="content"
                   placeholder="Lorem ipsum"

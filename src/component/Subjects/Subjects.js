@@ -22,7 +22,7 @@ export default () => {
                     <SubjectForm />
                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginTop: '100px' }}>
                         {subjects.map((subject, key) =>
-                            <Button key={key} variant="primary" size="lg" style={{ margin: '15px' }} href={`/list/${subject.name}`}>
+                            <Button key={key} variant="dark" size="lg" style={{ margin: '15px' }} href={`/list/${subject.name}`}>
                                 {subject.name}
                             </Button>)}
                             </div>
