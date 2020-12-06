@@ -26,21 +26,31 @@ const formik = useFormik({
     resetForm
   } = formik;
 
-    return (
-        <div>
+  return (<>
+    <img style={{width: '10rem', height:'10rem', left: '50%', position:'fixed', transform: 'translate(-50%, 400%)'}}
+      src="https://icons-for-free.com/iconfiles/png/512/color+cinema+icons+Astronaut-1320567850764192548.png"></img>
+        <h2 style={{color:'white', left: '50%', position:'fixed', transform: 'translate(-50%, 500%)'}}>Welcome to the secret Mln's astro def app,</h2>
+        <h2 style={{color:'white', left: '50%', position:'fixed', transform: 'translate(-50%, 600%)'}}>access is granted only to VIP astros.</h2>
+        <h2 style={{color:'white', left: '50%', position:'fixed', transform: 'translate(-50%, 700%)'}}>Have you a token ?</h2>
+        <div style={{width:'18rem',
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+        transform: 'translate(-50%, -50%)'
+      }}>
           <Form onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
-                <Form.Label style={{color: 'white'}}>Token</Form.Label>
-                <Form.Control name="token" value={values.name} onChange={handleChange} placeholder="Token" />
+                <Form.Control type="password" name="token" value={values.name} onChange={handleChange} placeholder="Token" />
               </Form.Group>
             </Form.Row>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" style={{}}>
               Submit
             </Button>
         </Form>
   </div>
+  </>
 )
 }
 export default UnloggedHome;
