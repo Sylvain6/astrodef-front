@@ -51,7 +51,7 @@ export default () => {
                                 <Card key={key} style={{ width: '100rem', marginBottom: '25px', marginTop: '25px' }}>
                                 <Card.Header className="text-center" ><b>{definition.name}</b></Card.Header>
                                 <Card.Body>
-                                    <Card.Text>{definition.content}</Card.Text>
+                                            {definition.content.split("\n").map(line => (<Card.Text>{line}</Card.Text>))}
                                         <Button
                                             variant="danger"
                                             onClick={() => handleShow(definition)}>
@@ -59,6 +59,7 @@ export default () => {
                                         </Button>
                                 </Card.Body>
                                     </Card>
+
                 </>))}
                                     <Modal key={`modal`} show={show} onHide={handleClose}>
                                         <Modal.Header closeButton>
